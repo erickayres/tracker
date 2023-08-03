@@ -1,6 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap'); */
-
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Orbitron:wght@500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Orbitron:wght@500&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Lato:wght@300;400;700&family=Orbitron:wght@500&display=swap');
 
 
 :root{
@@ -36,6 +36,7 @@ div.header{
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 
 svg{
@@ -44,6 +45,8 @@ svg{
 
 h1{
   color: #333333;
+  font-family: 'Creepster', cursive;
+  font-size: 40px;
 }
 
 label{
@@ -57,6 +60,9 @@ input{
   font-weight: 400;
   font-size: 0.9rem;
 }
+input:focus{
+  background: #eef;
+}
 
 select{
   height: 1.79rem;
@@ -67,6 +73,10 @@ select{
 
 input#task{
   width: 400px;
+}
+
+input#solicitante, input#subcategoria{
+  width: 165px;
 }
 .newline{
   width: 100%;
@@ -158,8 +168,11 @@ hr{
 }
 
 .card:hover{
-  border: 2px solid var(--icon-btn-color);
+  border: 2px solid ;
   cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 3px 3px 10px black;
+  transition: all 0.3s;
 }
 
 .n5{

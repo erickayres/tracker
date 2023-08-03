@@ -51,7 +51,6 @@ function addCard(chamado){
   let footer = document.createElement('p');
   let icon  = document.createElement('div');
 
-  // console.log(chamado.categoria)
   card.className = 'card';
   card.classList.add ('n'+chamado.nivel);
   if (chamado.resolvido) {card.classList.add('solved')};
@@ -167,7 +166,6 @@ function validateForm(){
 
 function loadForm(){
 
-  console.log(this.classList.toString());
   if (!btPause.disabled){
     (this.classList[2] == 'solved') ? pause(true) : pause(false);
   }
@@ -238,6 +236,8 @@ function timer(){
 
 function start(){
   
+  if (!validateForm()) return false;
+
   runningTime = new Date(0);
   runningTime.setTime(document.getElementById('time').value)
 
@@ -246,6 +246,7 @@ function start(){
 
   btStart.disabled = true;
   btPause.disabled = false;
+  btDone.disabled = false;
 }
 
 function pause(finished){
@@ -262,6 +263,12 @@ function pause(finished){
 }
 
 function done(){
+
+  if(document.getElementById('solution').value == ''){
+    alert('Só está pronto se houver solução. Preencha-a!');
+    return false;
+  }
+
   pause(true);
   clearForm();
 }
@@ -272,10 +279,10 @@ function returnTime(input){
 
 function updateData(solved){
   let item = document.getElementById('item').value;
+  let chamado = new Object();
+  let data = new Date();
 
   if (item == 0){
-    let chamado = new Object();
-    let data = new Date();
     id++;
     chamado.solicitante  = document.getElementById('solicitante').value;
     chamado.problema     = document.getElementById('task').value;
@@ -288,6 +295,8 @@ function updateData(solved){
     chamado.id           = id;
     chamado.tempo        = document.getElementById('time').value;
     chamado.resolvido    = solved; 
+    chamado.datafim      = data.toLocaleDateString();
+    chamado.horafim      = data.toLocaleTimeString();
 
     addCard(chamado);
     tasks.push(chamado);
@@ -304,6 +313,8 @@ function updateData(solved){
     tasks[index].solution     = document.getElementById('solution').value;
     tasks[index].tempo        = document.getElementById('time').value;
     tasks[index].resolvido    = solved;
+    tasks[index].datafim      = data.toLocaleDateString();
+    tasks[index].horafim      = data.toLocaleTimeString();
 
     if(solved){
       document.getElementById('card-'+item).classList.add('solved');
@@ -319,8 +330,15 @@ function downloadData(){
 
   let csv = 'Técnico; Data; Hora; Solicitante; Título; Categoria; SubCategoria; Urgência; Solução; Duração; Resolvido; \n'
   let tarefas = JSON.parse(localStorage.getItem('tasks'));
+  let duracao = new Date();
+  let duracaoString = "";
 
   tarefas.forEach((tarefa)=>{
+    duracao.setTime(tarefa.tempo);
+    duracaoString = returnTime(duracao.getUTCHours()) + ":";
+    duracaoString += returnTime(duracao.getUTCMinutes()) + ":";
+    duracaoString += returnTime(duracao.getUTCSeconds());
+
     csv += '"Erick Ayres";';
     csv += tarefa.data+';';
     csv += tarefa.hora+';';
@@ -330,8 +348,10 @@ function downloadData(){
     csv += '"'+ tarefa.subcategoria +'";';
     csv += tarefa.nivel + ';';
     csv += '"'+ tarefa.solution     +'";';
-    csv += tarefa.tempo +';';
+    csv += duracaoString +';';
     csv += tarefa.resolvido?'Sim':'Não';
+    csv += tarefa.resolvido?tarefa.datafim:'';
+    csv += tarefa.resolvido?tarefa.horafim:'';
     csv += '\n';
   })
 
