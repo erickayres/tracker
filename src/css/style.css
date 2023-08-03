@@ -9,6 +9,7 @@
   --card-alert: #F44336;
   --card-medium: #FF9800;
   --card-low: #FFEB3B;
+  --card-extra: #9C27B0;
   --icon-card-bg-color: #FFF;
   --main-bg-color: #F2F2F2;/* #0C2323; */
   --form-bg-color: #2196F3;/* alternativa boa é #FFC107*/
@@ -184,6 +185,10 @@ hr{
 .n1, .n2{
   background-color: var(--card-low);
 }
+.n0{
+  background-color: var(--card-extra);
+}
+
 
 .author{
   font-weight: bold;

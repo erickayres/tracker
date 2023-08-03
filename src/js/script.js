@@ -122,6 +122,7 @@ function clearForm(){
   btExcluir.disabled = true;
   btPause.disabled   = true;
   btStart.disabled   = false;
+  btAdicionar.disabled = false;
 
   clearInterval(cron);
   
@@ -193,6 +194,7 @@ function loadForm(){
   btStart.disabled   = chamado.resolvido;
   btDone.disabled    = chamado.resolvido;
   btPause.disabled   = true;
+  btAdicionar.disabled = true;
 }
 
 function deleteCard(){
