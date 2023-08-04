@@ -14,6 +14,7 @@ let btStart     = document.getElementById('btStart')
 let btPause     = document.getElementById('btPause')
 let btDone      = document.getElementById('btDone')
 let btDownload  = document.getElementById('btDownload')
+let btShow      = document.getElementById('btShow')
 
 let id = parseInt(localStorage.getItem('id')||0);
 let tasks = JSON.parse(localStorage.getItem('tasks'))||[];
@@ -25,6 +26,7 @@ btDone.addEventListener('click', done);
 btExcluir.addEventListener('click', deleteCard);
 btLimpar.addEventListener("click", clearForm);
 btDownload.addEventListener('click', downloadData);
+btShow.addEventListener('click', showSolved);
 
 btAdicionar.addEventListener("click", ()=>{
 
@@ -362,4 +364,16 @@ function downloadData(){
   hiddenElement.target   = '_blank';
   hiddenElement.download = 'taskticking.csv';
   hiddenElement.click();
+}
+
+function showSolved(){
+  let itensSolved = document.querySelectorAll('.solved')
+
+  if(btShow.querySelector('i').className == 'fa-solid fa-eye fa-2xl'){
+    btShow.querySelector('i').className = 'fa-solid fa-eye-slash fa-2xl';
+  } else {
+    btShow.querySelector('i').className = 'fa-solid fa-eye fa-2xl';
+  }
+
+  itensSolved.forEach((item) => {item.classList.toggle('notShow')});
 }

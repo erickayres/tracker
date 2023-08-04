@@ -16,6 +16,12 @@
   --disabled-color: gray;
 }
 
+.solved{
+  --card-alert: #F4433666;
+  --card-medium: #FF980066;
+  --card-low: #FFEB3B66;
+  --card-extra: #9C27B066;
+}
 /* *{
   margin: 0;
   padding: 0;
@@ -216,4 +222,8 @@ div.icon{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.notShow{
+  display: none;
 }
