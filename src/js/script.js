@@ -371,9 +371,11 @@ function showSolved(){
 
   if(btShow.querySelector('i').className == 'fa-solid fa-eye fa-2xl'){
     btShow.querySelector('i').className = 'fa-solid fa-eye-slash fa-2xl';
+    itensSolved.forEach((item) => {item.classList.add('notShow')});
   } else {
     btShow.querySelector('i').className = 'fa-solid fa-eye fa-2xl';
+    itensSolved.forEach((item) => {item.classList.remove('notShow')});
   }
 
-  itensSolved.forEach((item) => {item.classList.toggle('notShow')});
+
 }

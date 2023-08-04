@@ -78,10 +78,6 @@ select{
   font-family: 'Lato', sans-serif;
 }
 
-input#task{
-  width: 400px;
-}
-
 input#solicitante, input#subcategoria{
   width: 165px;
 }
@@ -226,4 +222,20 @@ div.icon{
 
 .notShow{
   display: none;
+}
+
+@media (min-width: 670px){
+  input#task{
+    width: 400px;
+  }
+}
+
+@media (max-width: 470px){
+  .toolbar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  } 
+
 }
